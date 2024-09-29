@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://detlq7fgwbwtm"]
+
+[ext_resource type="Script" path="res://grid.gd" id="1_d4um4"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 431.0
+offset_right = 471.0
+offset_bottom = 23.0
+
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource("1_d4um4")

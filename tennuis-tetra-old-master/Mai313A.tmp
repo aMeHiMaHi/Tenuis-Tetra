@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://detlq7fgwbwtm"]
+
+[sub_resource type="GDScript" id="GDScript_ke7k3"]
+script/source = "extends Node2D
+
+# Constants for the grid size and cell size
+const GRID_WIDTH = 10
+const GRID_HEIGHT = 20
+const CELL_SIZE = 32  # The size of each cell in pixels
+
+# 2D array representing the grid
+var grid = []
+
+func _ready():
+    initialize_grid()
+    # Manually force a redraw
+    queue_redraw()
+
+func initialize_grid():
+    # Initialize the grid with empty cells (0 represents an empty cell)
+    for i in range(GRID_HEIGHT):
+        var row = []
+        for j in range(GRID_WIDTH):
+            row.append(0)
+        grid.append(row)
+
+func _draw():
+    # Calculate the top-left position to center the grid on the screen
+    var screen_size = get_viewport_rect().size
+    var grid_size = Vector2(GRID_WIDTH * CELL_SIZE, GRID_HEIGHT * CELL_SIZE)
+    var start_position = (screen_size - grid_size) / 2
+
+    # Draw the grid
+    for y in range(GRID_HEIGHT):
+        for x in range(GRID_WIDTH):
+            var cell_position = start_position + Vector2(x * CELL_SIZE, y * CELL_SIZE)
+            draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), Color(1, 1, 1), false)
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 431.0
+offset_right = 471.0
+offset_bottom = 23.0
+
+[node name="Grid" type="Node2D" parent="."]
+script = SubResource("GDScript_ke7k3")
