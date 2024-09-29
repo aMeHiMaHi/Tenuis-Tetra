@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://detlq7fgwbwtm"]
 
-[ext_resource type="Script" path="res://grid.gd" id="1_d4um4"]
+[ext_resource type="Script" path="res://grid2.gd" id="1_xxeue"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -14,4 +14,4 @@ offset_right = 471.0
 offset_bottom = 23.0
 
 [node name="Grid" type="Node2D" parent="."]
-script = ExtResource("1_d4um4")
+script = ExtResource("1_xxeue")

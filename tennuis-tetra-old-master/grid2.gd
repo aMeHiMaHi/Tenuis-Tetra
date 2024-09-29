@@ -8,75 +8,96 @@ const CELL_SIZE = 32
 # Define Tetromino shapes and their colors
 const TETROMINOS = [
 	{ "shape": [
-				[[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]],   # I shape horizontal
-				[[0, 0, 1, 0], [0, 0, 1, 0], [0, 0, 1, 0], [0, 0, 1, 0]],   # I shape vertical
-				[[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]],   # I shape horizontal (repeated)
-				[[0, 1, 0, 0], [0, 1, 0, 0], [0, 1, 0, 0], [0, 1, 0, 0]]    # I shape vertical (repeated)
+				[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 1, 1, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],   # I shape horizontal
+				[[0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0]],   # I shape vertical
+				[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],   # I shape horizontal (repeated)
+				[[0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]    # I shape vertical (repeated)
 				], 
-	  "color": Color(0, 1, 1) },  # Cyan
+	  "color": Color(0, 1, 1), # Cyan
+	  "name" : "I"},
 				  
 	{ "shape": [
-				[[1, 1], [1, 1]]              # O shape
+				[[0, 1, 1], [0, 1, 1], [0, 0, 0]],   # O shape original
+				[[0, 0, 0], [0, 1, 1], [0, 1, 1]],   # O shape rotated 90
+				[[0, 0, 0], [1, 1, 0], [1, 1, 0]],   # O shape rotated 180
+				[[1, 1, 0], [1, 1, 0], [0, 0, 0]],   # O shape rotated 270
 				],           
-	  "color": Color(1, 1, 0) },  # Yellow
+	  "color": Color(1, 1, 0),   # Yellow
+	  "name" : "O"},
 
 	{ "shape": [
-				[[0, 1, 0], [1, 1, 1]],      # T shape original
-				[[0, 1], [1, 1], [0, 1]],    # T shape rotated 90
-				[[1, 1, 1], [0, 1, 0]],      # T shape rotated 180
-				[[1, 0], [1, 1], [1, 0]]     # T shape rotated 270
+				[[0, 1, 0], [1, 1, 1], [0, 0, 0]],    # T shape original
+				[[0, 1, 0], [0, 1, 1], [0, 1, 0]],    # T shape rotated 90
+				[[0, 0, 0], [1, 1, 1], [0, 1, 0]],    # T shape rotated 180
+				[[0, 1, 0], [1, 1, 0], [0, 1, 0]]     # T shape rotated 270
 				],      
-	  "color": Color(0.5, 0, 0.5) },  # Purple
+	  "color": Color(0.5, 0, 0.5), # Purple
+	  "name" : "other" }, 
 
 	{ "shape": [
-				[[0, 1, 1], [1, 1, 0]],      # S shape original
-				[[1, 0], [1, 1], [0, 1]],    # S shape rotated 90
-				[[0, 1, 1], [1, 1, 0]],      # S shape repeated original
-				[[1, 0], [1, 1], [0, 1]]     # S shape repeated rotated 90
+				[[0, 1, 1], [1, 1, 0], [0, 0, 0]],    # S shape original
+				[[0, 1, 0], [0, 1, 1], [0, 0, 1]],    # S shape rotated 90
+				[[0, 0, 0], [0, 1, 1], [1, 1, 0]],    # S shape rotated 180
+				[[1, 0, 0], [1, 1, 0], [0, 1, 0]]     # S shape rotated 270
 				],      
-	  "color": Color(0, 1, 0) },  # Green
+	  "color": Color(0, 1, 0),  # Green
+	  "name" : "other" }, 
 
 	{ "shape": [
-				[[1, 1, 0], [0, 1, 1]],      # Z shape original
-				[[0, 1], [1, 1], [1, 0]],    # Z shape rotated 90
-				[[1, 1, 0], [0, 1, 1]],      # Z shape repeated original
-				[[0, 1], [1, 1], [1, 0]]     # Z shape repeated rotated 90
+				[[1, 1, 0], [0, 1, 1], [0, 0, 0]],    # Z shape original
+				[[0, 0, 1], [0, 1, 1], [0, 1, 0]],    # Z shape rotated 90
+				[[0, 0, 0], [1, 1, 0], [0, 1, 1]],    # Z shape rotated 180
+				[[0, 1, 0], [1, 1, 0], [1, 0, 0]]     # Z shape rotated 270
 				],      
-	  "color": Color(1, 0, 0) },  # Red
+	  "color": Color(1, 0, 0), # Red
+	  "name" : "other" },  
 
 	{ "shape": [
-				[[1, 0, 0], [1, 1, 1]],      # J shape original
-				[[1, 1], [1, 0], [1, 0]],    # J shape rotated 90
-				[[1, 1, 1], [0, 0, 1]],      # J shape rotated 180
-				[[0, 1], [0, 1], [1, 1]]     # J shape rotated 270
+				[[1, 0, 0], [1, 1, 1], [0, 0, 0]],    # J shape original
+				[[0, 1, 1], [0, 1, 0], [0, 1, 0]],    # J shape rotated 90
+				[[0, 0, 0], [1, 1, 1], [0, 0, 1]],    # J shape rotated 180
+				[[0, 1, 0], [0, 1, 0], [1, 1, 0]]     # J shape rotated 270
 				],      
-	  "color": Color(0, 0, 1) },  # Blue
+	  "color": Color(1, 0.5, 0), # Orange
+	  "name" : "other" },  
 
 	{ "shape": [
-				[[0, 0, 1], [1, 1, 1]],      # L shape original
-				[[1, 0], [1, 0], [1, 1]],    # L shape rotated 90
-				[[1, 1, 1], [1, 0, 0]],      # L shape rotated 180
-				[[1, 1], [0, 1], [0, 1]]     # L shape rotated 270
+				[[0, 0, 1], [1, 1, 1], [0, 0, 0]],    # L shape original
+				[[0, 1, 0], [0, 1, 0], [0, 1, 1]],    # L shape rotated 90
+				[[0, 0, 0], [1, 1, 1], [1, 0, 0]],    # L shape rotated 180
+				[[1, 1, 0], [0, 1, 0], [0, 1, 0]]     # L shape rotated 270
 				],      
-	  "color": Color(1, 0.5, 0) }  # Orange
+	  "color": Color(0, 0, 1), # Blue
+	  "name" : "other" } 
 ]
 
 
 
 const KICK_TABLE = {
-	"I": [Vector2(0, 0), Vector2(-2, 0), Vector2(1, 0), Vector2(-2, -1), Vector2(1, 2)],
-	"other": [Vector2(0, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, -1), Vector2(1, -1)]
+	"I0": [Vector2(0, 0), Vector2(-1, 0), Vector2(2, 0), Vector2(-1, 0), Vector2(2, 0)],
+	"I1": [Vector2(-1, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 1), Vector2(0, -2)],
+	"I2": [Vector2(-1, -1), Vector2(1, 1), Vector2(-2, 1), Vector2(1, 0), Vector2(-2, 0)],
+	"I3": [Vector2(0, -1), Vector2(0, 1), Vector2(0, 1), Vector2(0, -1), Vector2(0, 2)],
+	"O0": [Vector2(0, 0)],
+	"O1": [Vector2(0, 1)], 
+	"O2": [Vector2(-1, 1)], 
+	"O3": [Vector2(-1, 0)],
+	"other0": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)],
+	"other1": [Vector2(0, 0), Vector2(1, 0), Vector2(1, -1), Vector2(0, 2), Vector2(1, 2)],
+	"other2": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)],
+	"other3": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, 2), Vector2(-1, 2)]
 }
 
 var grid = []
 var current_piece
 var current_position = Vector2(0, 0)
 var current_rotation = 0
+var last_kick = Vector2(0, 0)
 
 var held_piece = null
 var hold_used = false  # To track if hold is used in the current turn
 
-var fall_speed = 0.5
+var fall_speed = 1
 var time_since_last_fall = 0.0
 
 var lock_timer = 0.0
@@ -94,7 +115,7 @@ func _ready():
 	queue_redraw()
 
 func _process(delta):
-	time_since_last_fall += delta
+	#time_since_last_fall += delta
 	if time_since_last_fall >= fall_speed or soft_drop:
 		time_since_last_fall = 0.0
 		move_piece(Vector2(0, 1)) # Move the piece down automatically or due to soft drop
@@ -168,15 +189,17 @@ func rotate_piece():
 		current_rotation = new_rotation
 		lock_timer = 0.0
 		queue_redraw()
-	else:
-		for kick in KICK_TABLE["other"]:
-			var kick_position = current_position + kick
-			if can_move_to(kick_position, rotated_shape):
-				current_position = kick_position
-				current_rotation = new_rotation
-				lock_timer = 0.0
-				queue_redraw()
-				break
+	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
+		var kick_position = current_position + (last_kick - kick)
+		print(str(kick) + ", " + str(current_piece["name"]) + str(new_rotation))
+		if can_move_to(kick_position, rotated_shape):
+			last_kick = kick
+			current_position = kick_position
+			current_rotation = new_rotation
+			lock_timer = 0.0
+			queue_redraw()
+			break
+	print(".")
 
 func rotate_piece_ccw():
 	var new_rotation = (current_rotation - 1 + current_piece["shape"].size()) % current_piece["shape"].size()
@@ -185,15 +208,17 @@ func rotate_piece_ccw():
 		current_rotation = new_rotation
 		lock_timer = 0.0
 		queue_redraw()
-	else:
-		for kick in KICK_TABLE["other"]:
-			var kick_position = current_position + kick
-			if can_move_to(kick_position, rotated_shape):
-				current_position = kick_position
-				current_rotation = new_rotation
-				lock_timer = 0.0
-				queue_redraw()
-				break
+	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
+		var kick_position = current_position + (last_kick - kick)
+		print(str(kick) + ", " + str(current_piece["name"]) + str(new_rotation))
+		if can_move_to(kick_position, rotated_shape):
+			last_kick = kick
+			current_position = kick_position
+			current_rotation = new_rotation
+			lock_timer = 0.0
+			queue_redraw()
+			break
+	print(".")
 
 func can_move_to(position: Vector2, shape: Array) -> bool:
 	for y in range(shape.size()):
