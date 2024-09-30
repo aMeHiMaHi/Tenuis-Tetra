@@ -58,7 +58,7 @@ const TETROMINOS = [
 				[[0, 0, 0], [1, 1, 1], [0, 0, 1]],    # J shape rotated 180
 				[[0, 1, 0], [0, 1, 0], [1, 1, 0]]     # J shape rotated 270
 				],      
-	  "color": Color(1, 0.5, 0), # Orange
+	  "color": Color(0, 0, 1), # Blue
 	  "name" : "other" },  
 
 	{ "shape": [
@@ -67,25 +67,25 @@ const TETROMINOS = [
 				[[0, 0, 0], [1, 1, 1], [1, 0, 0]],    # L shape rotated 180
 				[[1, 1, 0], [0, 1, 0], [0, 1, 0]]     # L shape rotated 270
 				],      
-	  "color": Color(0, 0, 1), # Blue
+	  "color": Color(1, 0.5, 0), # Orange
 	  "name" : "other" } 
 ]
 
 
 
 const KICK_TABLE = {
-	"I0": [Vector2(0, 0), Vector2(-1, 0), Vector2(2, 0), Vector2(-1, 0), Vector2(2, 0)],
-	"I1": [Vector2(-1, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 1), Vector2(0, -2)],
-	"I2": [Vector2(-1, -1), Vector2(1, 1), Vector2(-2, 1), Vector2(1, 0), Vector2(-2, 0)],
-	"I3": [Vector2(0, -1), Vector2(0, 1), Vector2(0, 1), Vector2(0, -1), Vector2(0, 2)],
+	"I1": [Vector2(-1, 0), Vector2(1, 0), Vector2(-2, 0), Vector2(1, -1), Vector2(-2, 2)],
+	"I2": [Vector2(-1, -1), Vector2(0, -1), Vector2(3, -1), Vector2(0, 1), Vector2(-3, -2)],
+	"I3": [Vector2(0, -1), Vector2(-2, -1), Vector2(1, -1), Vector2(-2, 0), Vector2(1, 2)],
+	"I0": [Vector2(0, 0), Vector2(-1, 0), Vector2(2, 0), Vector2(-1, -2), Vector2(2, 1)],
 	"O0": [Vector2(0, 0)],
 	"O1": [Vector2(0, 1)], 
 	"O2": [Vector2(-1, 1)], 
 	"O3": [Vector2(-1, 0)],
-	"other0": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)],
-	"other1": [Vector2(0, 0), Vector2(1, 0), Vector2(1, -1), Vector2(0, 2), Vector2(1, 2)],
-	"other2": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)],
-	"other3": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, 2), Vector2(-1, 2)]
+	"other0": [Vector2(0, 0), Vector2(1, 0), Vector2(1, -1), Vector2(0, 2), Vector2(1, 2)],
+	"other1": [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, -2), Vector2(1, -2)],
+	"other2": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, 2), Vector2(-1, 2)],
+	"other3": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, 1), Vector2(0, -2), Vector2(-1, -2)]
 }
 
 var grid = []
@@ -141,8 +141,30 @@ func initialize_grid():
 			row.append(0)
 		grid.append(row)
 
+	# Debug grid
+	#grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,], 
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+	#		[1, 1, 1, 1, 0, 1, 0, 0, 0, 0,],
+	#		[1, 1, 0, 0, 0, 1, 0, 0, 0, 0,]]
+
 func spawn_new_piece():
-	current_piece = TETROMINOS[randi() % TETROMINOS.size()]
+	current_piece = TETROMINOS[6 % TETROMINOS.size()]
 	current_position = Vector2(GRID_WIDTH / 2 - 2, 0)
 	current_rotation = 0
 	lock_timer = 0.0
