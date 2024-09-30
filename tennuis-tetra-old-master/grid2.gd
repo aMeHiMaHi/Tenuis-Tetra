@@ -97,7 +97,7 @@ var last_kick = Vector2(0, 0)
 var held_piece = null
 var hold_used = false  # To track if hold is used in the current turn
 
-var fall_speed = 1
+var fall_speed = 0.5
 var time_since_last_fall = 0.0
 
 var lock_timer = 0.0
@@ -115,7 +115,7 @@ func _ready():
 	queue_redraw()
 
 func _process(delta):
-	#time_since_last_fall += delta
+	time_since_last_fall += delta
 	if time_since_last_fall >= fall_speed or soft_drop:
 		time_since_last_fall = 0.0
 		move_piece(Vector2(0, 1)) # Move the piece down automatically or due to soft drop
@@ -164,7 +164,7 @@ func initialize_grid():
 	#		[1, 1, 0, 0, 0, 1, 0, 0, 0, 0,]]
 
 func spawn_new_piece():
-	current_piece = TETROMINOS[6 % TETROMINOS.size()]
+	current_piece = TETROMINOS[randi() % TETROMINOS.size()]
 	current_position = Vector2(GRID_WIDTH / 2 - 2, 0)
 	current_rotation = 0
 	lock_timer = 0.0
