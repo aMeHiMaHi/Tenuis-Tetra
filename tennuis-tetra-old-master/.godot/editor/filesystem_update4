@@ -4,3 +4,4 @@ res://ThemeSettings.tres
 res://TitleScreen.tscn
 res://menu_controller.gd
 res://grid2.gd
+res://grid.gd
