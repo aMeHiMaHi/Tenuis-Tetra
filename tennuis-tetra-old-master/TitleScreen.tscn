@@ -1,0 +1,280 @@
+[gd_scene load_steps=22 format=3 uid="uid://cuciadotwkmx3"]
+
+[ext_resource type="Texture2D" uid="uid://cw2gs0nvimggv" path="res://tetris.svg" id="1_7gtva"]
+[ext_resource type="Texture2D" uid="uid://blfrowh2d2ejh" path="res://Shapes.png" id="2_om0yo"]
+[ext_resource type="Theme" uid="uid://douj0kj7wh2nn" path="res://Theme.tres" id="5_tlceu"]
+[ext_resource type="Texture2D" uid="uid://dfr6gx3mqnhey" path="res://Textures/ButtonTex/ButtonG.png" id="7_5i0dq"]
+[ext_resource type="AudioStream" uid="uid://diruyd5h8rsyt" path="res://tetris title.mp3" id="7_a2cc8"]
+[ext_resource type="Texture2D" uid="uid://bcqm8mig58ib5" path="res://Textures/ButtonTex/ButtonO.png" id="8_3r6py"]
+[ext_resource type="Texture2D" uid="uid://cqvqpqcvgkpd7" path="res://Textures/Icons/SocialMedia/icons8-twitter-96.png" id="8_yoh4v"]
+[ext_resource type="Texture2D" uid="uid://ysbxkrcigcqc" path="res://Textures/Icons/SocialMedia/icons8-youtube-96.png" id="9_p0rsa"]
+[ext_resource type="Texture2D" uid="uid://w6vyai6re7ug" path="res://Textures/ButtonTex/ButtonY.png" id="9_soxlh"]
+[ext_resource type="Texture2D" uid="uid://3jp7jvc2ke6x" path="res://Textures/Icons/SocialMedia/Pictogrammers-Material-Steam.512.png" id="10_jeckw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bh5tj"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_icg63"]
+min_value = -1.0
+_data = [Vector2(0, 0.0329671), 0.0, 0.0, 0, 0, Vector2(0.973545, 0.582418), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_w7ubj"]
+curve = SubResource("Curve_icg63")
+
+[sub_resource type="Curve" id="Curve_wj8ch"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_c4xqk"]
+curve_y = SubResource("Curve_wj8ch")
+
+[sub_resource type="Curve" id="Curve_khqg4"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.539683, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_31d0q"]
+curve = SubResource("Curve_khqg4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ukkwj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2000, 1, 1)
+angle_curve = SubResource("CurveTexture_w7ubj")
+direction = Vector3(0, 1, 0)
+spread = 0.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+directional_velocity_min = 122.6
+directional_velocity_max = 212.2
+directional_velocity_curve = SubResource("CurveXYZTexture_c4xqk")
+gravity = Vector3(0, 0, 0)
+scale_min = 35.0
+scale_max = 35.0
+scale_over_velocity_max = 1000.0
+scale_over_velocity_curve = SubResource("CurveTexture_31d0q")
+anim_offset_max = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mjbvg"]
+texture = ExtResource("7_5i0dq")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bdb0p"]
+texture = ExtResource("8_3r6py")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ewb8u"]
+texture = ExtResource("9_soxlh")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 15.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_bh5tj")
+position = Vector2(1848, -100)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ukkwj")
+texture = ExtResource("2_om0yo")
+lifetime = 20.0
+visibility_rect = Rect2(-14000, 0, 28000, 2000)
+local_coords = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.253
+anchor_right = 0.5
+anchor_bottom = 0.35
+offset_left = -359.0
+offset_top = -0.240051
+offset_right = 359.0
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_tlceu")
+texture = ExtResource("1_7gtva")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.366
+anchor_right = 0.5
+anchor_bottom = 0.725
+offset_left = -126.0
+offset_top = -0.28006
+offset_right = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_tlceu")
+
+[node name="LineEdit" type="LineEdit" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036
+anchor_top = 0.036
+anchor_right = 0.952
+anchor_bottom = 0.193
+offset_left = -0.0719986
+offset_top = 0.0319977
+offset_right = 0.0960541
+offset_bottom = 0.11599
+theme = ExtResource("5_tlceu")
+placeholder_text = "Unnamed"
+alignment = 1
+max_length = 14
+
+[node name="BoxContainer" type="BoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.229
+anchor_right = 1.0
+anchor_bottom = 0.997
+offset_left = 10.0
+offset_top = 0.147987
+offset_right = -10.9999
+offset_bottom = -9.83603
+theme = ExtResource("5_tlceu")
+theme_override_constants/separation = 16
+alignment = 2
+vertical = true
+
+[node name="Button" type="Button" parent="Panel/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_tlceu")
+text = "Shop"
+
+[node name="Button2" type="Button" parent="Panel/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_tlceu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_mjbvg")
+text = "Play"
+
+[node name="Button3" type="Button" parent="Panel/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_tlceu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_bdb0p")
+text = "leaderboards"
+
+[node name="Button4" type="Button" parent="Panel/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_tlceu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ewb8u")
+text = "Options"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_a2cc8")
+autoplay = true
+mix_target = 1
+
+[node name="BoxContainer2" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 1055.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_tlceu")
+theme_override_constants/separation = 35
+alignment = 2
+
+[node name="LinkButton3" type="LinkButton" parent="BoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+text = "Source code"
+underline = 1
+uri = "https://tentet.top/terms"
+
+[node name="LinkButton" type="LinkButton" parent="BoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+text = "Terms"
+underline = 1
+uri = "https://tentet.top/terms"
+
+[node name="LinkButton2" type="LinkButton" parent="BoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+text = "Privacy"
+underline = 1
+uri = "https://tentet.top/privacy"
+
+[node name="Label" type="Label" parent="BoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+text = "0.1 Alpha"
+
+[node name="BoxContainer3" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 1023.0
+offset_right = -1662.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_tlceu")
+theme_override_constants/separation = 35
+
+[node name="TextureButton" type="TextureButton" parent="BoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("8_yoh4v")
+texture_pressed = ExtResource("8_yoh4v")
+texture_hover = ExtResource("8_yoh4v")
+texture_disabled = ExtResource("8_yoh4v")
+texture_focused = ExtResource("8_yoh4v")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButton2" type="TextureButton" parent="BoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("9_p0rsa")
+texture_pressed = ExtResource("9_p0rsa")
+texture_hover = ExtResource("9_p0rsa")
+texture_disabled = ExtResource("9_p0rsa")
+texture_focused = ExtResource("9_p0rsa")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButton3" type="TextureButton" parent="BoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("10_jeckw")
+texture_pressed = ExtResource("10_jeckw")
+texture_hover = ExtResource("10_jeckw")
+texture_disabled = ExtResource("10_jeckw")
+texture_focused = ExtResource("10_jeckw")
+ignore_texture_size = true
+stretch_mode = 4

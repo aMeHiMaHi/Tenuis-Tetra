@@ -1,3 +1,7 @@
 res://grid2.gd
 res://Main.tscn
 res://grid.gd
+res://TitleScreen.tscn
+res://TitleScreen.gdshader
+res://Theme.tres
+res://ButtonTex/Button_style_box_texture.tres
