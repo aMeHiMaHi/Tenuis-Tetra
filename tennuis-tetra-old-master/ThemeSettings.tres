@@ -1,11 +1,11 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://douj0kj7wh2nn"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://drdvjook7slk5"]
 
-[ext_resource type="FontFile" uid="uid://7rtlxrboqcan" path="res://Textures/ButtonTex/04B_30__.TTF" id="1_prwd7"]
-[ext_resource type="StyleBox" uid="uid://cgcud0fhurgbi" path="res://Textures/ButtonTex/Button_style_box_texture.tres" id="2_smwep"]
-[ext_resource type="Texture2D" uid="uid://b6jrfqfrohiqq" path="res://Textures/ButtonTex/ButtonPressedC.png" id="3_4ypdy"]
+[ext_resource type="FontFile" uid="uid://7rtlxrboqcan" path="res://Textures/ButtonTex/04B_30__.TTF" id="1_gv66l"]
+[ext_resource type="StyleBox" uid="uid://cgcud0fhurgbi" path="res://Textures/ButtonTex/Button_style_box_texture.tres" id="2_ewkqa"]
+[ext_resource type="Texture2D" uid="uid://b6jrfqfrohiqq" path="res://Textures/ButtonTex/ButtonPressedC.png" id="3_r4myr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_glr58"]
-texture = ExtResource("3_4ypdy")
+texture = ExtResource("3_r4myr")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
@@ -30,7 +30,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68jin"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0, 0, 0, 0.768627)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -45,18 +45,18 @@ Button/colors/font_hover_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/font_sizes/font_size = 20
-Button/fonts/font = ExtResource("1_prwd7")
-Button/styles/hover = ExtResource("2_smwep")
-Button/styles/normal = ExtResource("2_smwep")
+Button/fonts/font = ExtResource("1_gv66l")
+Button/styles/hover = ExtResource("2_ewkqa")
+Button/styles/normal = ExtResource("2_ewkqa")
 Button/styles/pressed = SubResource("StyleBoxTexture_glr58")
 Label/font_sizes/font_size = 20
-Label/fonts/font = ExtResource("1_prwd7")
-LineEdit/fonts/font = ExtResource("1_prwd7")
+Label/fonts/font = ExtResource("1_gv66l")
+LineEdit/fonts/font = ExtResource("1_gv66l")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_6hukg")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_a76k6")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_7m36p")
 LinkButton/font_sizes/font_size = 20
-LinkButton/fonts/font = ExtResource("1_prwd7")
+LinkButton/fonts/font = ExtResource("1_gv66l")
 Panel/styles/panel = SubResource("StyleBoxFlat_68jin")
 TabContainer/font_sizes/font_size = 35
-TabContainer/fonts/font = ExtResource("1_prwd7")
+TabContainer/fonts/font = ExtResource("1_gv66l")
