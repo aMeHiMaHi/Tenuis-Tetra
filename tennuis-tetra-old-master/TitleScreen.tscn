@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cuciadotwkmx3"]
+[gd_scene load_steps=26 format=3 uid="uid://cuciadotwkmx3"]
 
 [ext_resource type="Texture2D" uid="uid://cw2gs0nvimggv" path="res://tetris.svg" id="1_7gtva"]
 [ext_resource type="Texture2D" uid="uid://blfrowh2d2ejh" path="res://Shapes.png" id="2_om0yo"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ysbxkrcigcqc" path="res://Textures/Icons/SocialMedia/icons8-youtube-96.png" id="9_p0rsa"]
 [ext_resource type="Texture2D" uid="uid://w6vyai6re7ug" path="res://Textures/ButtonTex/ButtonY.png" id="9_soxlh"]
 [ext_resource type="Texture2D" uid="uid://3jp7jvc2ke6x" path="res://Textures/Icons/SocialMedia/Pictogrammers-Material-Steam.512.png" id="10_jeckw"]
+[ext_resource type="Script" path="res://scene_changer.gd" id="11_1v2sx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bh5tj"]
 particles_animation = true
@@ -80,6 +81,15 @@ texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 15.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6lgs"]
+bg_color = Color(0.154876, 0.154876, 0.154876, 1)
+
+[sub_resource type="Theme" id="Theme_b0dih"]
+Panel/styles/panel = SubResource("StyleBoxFlat_o6lgs")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2x26"]
+bg_color = Color(0.473976, 0.473976, 0.473976, 1)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -95,37 +105,21 @@ amount = 100
 process_material = SubResource("ParticleProcessMaterial_ukkwj")
 texture = ExtResource("2_om0yo")
 lifetime = 20.0
+preprocess = 20.0
 visibility_rect = Rect2(-14000, 0, 28000, 2000)
 local_coords = true
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.253
-anchor_right = 0.5
-anchor_bottom = 0.35
-offset_left = -359.0
-offset_top = -0.240051
-offset_right = 359.0
-offset_bottom = -3.05176e-05
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("5_tlceu")
-texture = ExtResource("1_7gtva")
-expand_mode = 2
-stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.366
+anchor_top = 0.449
 anchor_right = 0.5
-anchor_bottom = 0.725
+anchor_bottom = 0.641
 offset_left = -126.0
-offset_top = -0.28006
+offset_top = -89.9201
 offset_right = 126.0
+offset_bottom = 90.72
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_tlceu")
@@ -188,6 +182,24 @@ theme = ExtResource("5_tlceu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ewb8u")
 text = "Options"
 
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.314
+anchor_right = 0.5
+anchor_bottom = -0.052
+offset_left = -359.0
+offset_top = -0.167969
+offset_right = 359.0
+offset_bottom = 0.176004
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_tlceu")
+texture = ExtResource("1_7gtva")
+expand_mode = 2
+stretch_mode = 5
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_a2cc8")
 autoplay = true
@@ -195,12 +207,14 @@ mix_target = 1
 
 [node name="BoxContainer2" type="BoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.008
+anchor_top = 0.977
+anchor_right = 0.992
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 1055.0
-offset_right = -16.0
+offset_left = 0.639999
+offset_top = -0.160034
+offset_right = -0.640137
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_tlceu")
@@ -212,7 +226,7 @@ layout_mode = 2
 theme = ExtResource("5_tlceu")
 text = "Source code"
 underline = 1
-uri = "https://tentet.top/terms"
+uri = "https://github.com/aMeHiMaHi/Tenuis-Tetra"
 
 [node name="LinkButton" type="LinkButton" parent="BoxContainer2"]
 layout_mode = 2
@@ -235,12 +249,14 @@ text = "0.1 Alpha"
 
 [node name="BoxContainer3" type="BoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.008
+anchor_top = 0.947
+anchor_right = 0.008
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 1023.0
-offset_right = -1662.0
+offset_left = 0.639999
+offset_top = 0.23999
+offset_right = 242.64
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_tlceu")
@@ -278,3 +294,113 @@ texture_disabled = ExtResource("10_jeckw")
 texture_focused = ExtResource("10_jeckw")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="SceneChanger" type="Node" parent="."]
+script = ExtResource("11_1v2sx")
+
+[node name="MenuController" type="Node" parent="."]
+
+[node name="Panel" type="Panel" parent="MenuController"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_b0dih")
+
+[node name="TabContainer" type="TabContainer" parent="MenuController/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_tlceu")
+tab_alignment = 1
+current_tab = 1
+deselect_enabled = true
+
+[node name="Rewards" type="Panel" parent="MenuController/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_g2x26")
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="MenuController/Panel/TabContainer/Rewards"]
+layout_mode = 0
+offset_left = 1131.0
+offset_right = 1917.0
+offset_bottom = 1029.0
+theme_override_font_sizes/font_size = 30
+text = "-------------TO-Do-------------
+
+PJ you add stuff here for me to make
+
+PS- L"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PuzzelBoxes" type="Panel" parent="MenuController/Panel/TabContainer"]
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_g2x26")
+metadata/_tab_index = 1
+
+[node name="Label2" type="Label" parent="MenuController/Panel/TabContainer/PuzzelBoxes"]
+layout_mode = 0
+offset_left = 1131.0
+offset_right = 1917.0
+offset_bottom = 1029.0
+theme_override_font_sizes/font_size = 30
+text = "-------------TO-Do-------------
+
+PJ you add stuff here for me to make
+
+PS- L"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Skins" type="Panel" parent="MenuController/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_g2x26")
+metadata/_tab_index = 2
+
+[node name="Label3" type="Label" parent="MenuController/Panel/TabContainer/Skins"]
+layout_mode = 0
+offset_left = 1131.0
+offset_right = 1917.0
+offset_bottom = 1029.0
+theme_override_font_sizes/font_size = 30
+text = "-------------TO-Do-------------
+
+PJ you add stuff here for me to make
+
+PS- L"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Blocks" type="Panel" parent="MenuController/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_g2x26")
+metadata/_tab_index = 3
+
+[node name="Label4" type="Label" parent="MenuController/Panel/TabContainer/Blocks"]
+layout_mode = 0
+offset_left = 1131.0
+offset_right = 1917.0
+offset_bottom = 1029.0
+theme_override_font_sizes/font_size = 30
+text = "-------------TO-Do-------------
+
+PJ you add stuff here for me to make
+
+PS- L"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="button_up" from="Panel/BoxContainer/Button2" to="SceneChanger" method="_on_button_2_button_up"]

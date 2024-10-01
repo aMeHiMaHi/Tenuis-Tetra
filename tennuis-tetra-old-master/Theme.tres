@@ -58,3 +58,5 @@ LineEdit/styles/read_only = SubResource("StyleBoxFlat_7m36p")
 LinkButton/font_sizes/font_size = 20
 LinkButton/fonts/font = ExtResource("1_prwd7")
 Panel/styles/panel = SubResource("StyleBoxFlat_68jin")
+TabContainer/font_sizes/font_size = 35
+TabContainer/fonts/font = ExtResource("1_prwd7")
