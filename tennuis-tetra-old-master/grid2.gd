@@ -1,9 +1,20 @@
 extends Node2D
-
+# Declare the font variable
+var my_font: FontFile
+var next_pieces = []
+var das_delay = 0.35  # DAS delay in seconds before DAS activates
+var das_repeat_rate = 0.05  # Time in seconds for repeated movement after DAS activates
+var das_timer = 0.0
 # Constants for the grid size and cell size
 const GRID_WIDTH = 10
 const GRID_HEIGHT = 20
 const CELL_SIZE = 32
+
+var bag = []
+var score = 0
+var level = 1
+var lines_cleared = 0
+var game_over = false
 
 # Define Tetromino shapes and their colors
 const TETROMINOS = [
@@ -15,7 +26,7 @@ const TETROMINOS = [
 				], 
 	  "color": Color(0, 1, 1), # Cyan
 	  "name" : "I"},
-				  
+
 	{ "shape": [
 				[[0, 1, 1], [0, 1, 1], [0, 0, 0]],   # O shape original
 				[[0, 0, 0], [0, 1, 1], [0, 1, 1]],   # O shape rotated 90
@@ -70,9 +81,6 @@ const TETROMINOS = [
 	  "color": Color(1, 0.5, 0), # Orange
 	  "name" : "other" } 
 ]
-
-
-
 const KICK_TABLE = {
 	"I1": [Vector2(-1, 0), Vector2(1, 0), Vector2(-2, 0), Vector2(1, -1), Vector2(-2, 2)],
 	"I2": [Vector2(-1, -1), Vector2(0, -1), Vector2(3, -1), Vector2(0, 1), Vector2(-3, -2)],
@@ -87,7 +95,6 @@ const KICK_TABLE = {
 	"other2": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, 2), Vector2(-1, 2)],
 	"other3": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, 1), Vector2(0, -2), Vector2(-1, -2)]
 }
-
 var grid = []
 var current_piece
 var current_position = Vector2(0, 0)
@@ -102,30 +109,33 @@ var time_since_last_fall = 0.0
 
 var lock_timer = 0.0
 var lock_delay = 0.5
-
-var das_delay = 0.35  # DAS delay in seconds
-var das_timer = 0.03
 var das_direction = Vector2()
 
 var soft_drop = false  # Track if the down key is being held
 
 func _ready():
+	# Load the font file into a FontFile object
+	my_font = load("res://mettaton-ex.otf")  # Replace with your actual font path
 	initialize_grid()
 	spawn_new_piece()
 	queue_redraw()
 
 func _process(delta):
+	if game_over:
+		return
+
 	time_since_last_fall += delta
 	if time_since_last_fall >= fall_speed or soft_drop:
 		time_since_last_fall = 0.0
-		move_piece(Vector2(0, 1)) # Move the piece down automatically or due to soft drop
-	
+		move_piece(Vector2(0, 1))  # Move the piece down automatically or due to soft drop
+
 	if das_direction != Vector2():
 		das_timer += delta
 		if das_timer >= das_delay:
-			das_timer = 0.0
+			# Start continuous movement
+			das_timer -= das_repeat_rate  # Subtract the repeat rate to allow for continuous movement
 			move_piece(das_direction)
-
+	
 	# Handle locking after the delay
 	if not can_move_to(current_position + Vector2(0, 1), current_piece["shape"][current_rotation]):
 		lock_timer += delta
@@ -141,34 +151,37 @@ func initialize_grid():
 			row.append(0)
 		grid.append(row)
 
-	# Debug grid
-	#grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,], 
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-	#		[1, 1, 1, 1, 0, 1, 0, 0, 0, 0,],
-	#		[1, 1, 0, 0, 0, 1, 0, 0, 0, 0,]]
-
 func spawn_new_piece():
-	current_piece = TETROMINOS[randi() % TETROMINOS.size()]
+	if game_over:
+		return  # Do nothing if the game is already over
+
+	# Fill the bag and next_pieces queue if empty
+	if bag == []:
+		bag = TETROMINOS.duplicate()
+		bag.shuffle()
+
+	while next_pieces.size() < 5:
+		next_pieces.append(bag.pop_back())
+
+	# Get the next piece from the queue
+	current_piece = next_pieces.pop_front()
+
+	# Add a new piece to the queue
+	if bag == []:
+		bag = TETROMINOS.duplicate()
+		bag.shuffle()
+	next_pieces.append(bag.pop_back())
+
 	current_position = Vector2(GRID_WIDTH / 2 - 2, 0)
 	current_rotation = 0
 	lock_timer = 0.0
 	hold_used = false
+
+	# Check if the piece can be placed in the initial position
+	if not can_move_to(current_position, current_piece["shape"][current_rotation]):
+		game_over = true  # Game over if there's no space for a new piece
+		print("Game Over! Score: " + str(score))
+
 
 func move_piece(direction: Vector2):
 	var new_position = current_position + direction
@@ -188,8 +201,21 @@ func lock_piece():
 	while clear_lines():
 		clear_lines()
 	spawn_new_piece()
+func draw_next_pieces():
+	var next_position = Vector2(400, 50)  # Adjust this to position the display on the screen
+	for i in range(next_pieces.size()):
+		var next_piece = next_pieces[i]
+		var shape = next_piece["shape"][0]  # Always show the default rotation for preview
+		var piece_position = next_position + Vector2(0, i * 100)  # Stack pieces vertically
+
+		for y in range(shape.size()):
+			for x in range(shape[y].size()):
+				if shape[y][x] != 0:
+					var cell_position = piece_position + Vector2(x * CELL_SIZE / 2, y * CELL_SIZE / 2)  # Smaller size
+					draw_rect(Rect2(cell_position, Vector2(CELL_SIZE / 2, CELL_SIZE / 2)), next_piece["color"])
 
 func clear_lines():
+	var lines_cleared_in_this_move = 0
 	for y in range(GRID_HEIGHT - 1, -1, -1):
 		var is_full_line = true
 		for x in range(GRID_WIDTH):
@@ -202,7 +228,34 @@ func clear_lines():
 			grid[0] = Array()
 			for i in range(GRID_WIDTH):
 				grid[0].append(0)
-			return true
+			lines_cleared_in_this_move += 1
+
+	# Score calculation based on the number of lines cleared
+	if lines_cleared_in_this_move > 0:
+		lines_cleared += lines_cleared_in_this_move
+		update_score(lines_cleared_in_this_move)
+
+		# Increase level every 10 lines cleared
+		level = (lines_cleared / 10) + 1
+		update_fall_speed()
+	
+	return lines_cleared_in_this_move > 0
+
+func update_score(lines_cleared_in_this_move):
+	var line_score = 0
+	match lines_cleared_in_this_move:
+		1:
+			line_score = 40
+		2:
+			line_score = 100
+		3:
+			line_score = 300
+		4:
+			line_score = 1200
+	score += line_score * level
+
+func update_fall_speed():
+	fall_speed = max(0.05, 0.5 - (level - 1) * 0.05)
 
 func rotate_piece():
 	var new_rotation = (current_rotation + 1) % current_piece["shape"].size()
@@ -213,7 +266,6 @@ func rotate_piece():
 		queue_redraw()
 	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
 		var kick_position = current_position + (last_kick - kick)
-		print(str(kick) + ", " + str(current_piece["name"]) + str(new_rotation))
 		if can_move_to(kick_position, rotated_shape):
 			last_kick = kick
 			current_position = kick_position
@@ -221,7 +273,6 @@ func rotate_piece():
 			lock_timer = 0.0
 			queue_redraw()
 			break
-	print(".")
 
 func rotate_piece_ccw():
 	var new_rotation = (current_rotation - 1 + current_piece["shape"].size()) % current_piece["shape"].size()
@@ -232,7 +283,6 @@ func rotate_piece_ccw():
 		queue_redraw()
 	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
 		var kick_position = current_position + (last_kick - kick)
-		print(str(kick) + ", " + str(current_piece["name"]) + str(new_rotation))
 		if can_move_to(kick_position, rotated_shape):
 			last_kick = kick
 			current_position = kick_position
@@ -240,7 +290,6 @@ func rotate_piece_ccw():
 			lock_timer = 0.0
 			queue_redraw()
 			break
-	print(".")
 
 func can_move_to(position: Vector2, shape: Array) -> bool:
 	for y in range(shape.size()):
@@ -258,9 +307,11 @@ func _input(event):
 			if event.keycode == KEY_LEFT:
 				move_piece(Vector2(-1, 0))
 				das_direction = Vector2(-1, 0)  # Start DAS for left movement
+				das_timer = 0.0  # Reset DAS timer
 			elif event.keycode == KEY_RIGHT:
 				move_piece(Vector2(1, 0))
 				das_direction = Vector2(1, 0)  # Start DAS for right movement
+				das_timer = 0.0  # Reset DAS timer
 			elif event.keycode == KEY_DOWN:
 				soft_drop = true  # Enable continuous downward movement
 			elif event.keycode == KEY_Z or event.keycode == KEY_UP:
@@ -274,6 +325,7 @@ func _input(event):
 		elif event.is_released():
 			if event.keycode == KEY_LEFT or event.keycode == KEY_RIGHT:
 				das_direction = Vector2()  # Stop DAS when the key is released
+				das_timer = 0.0  # Reset DAS timer
 			elif event.keycode == KEY_DOWN:
 				soft_drop = false  # Stop continuous downward movement
 
@@ -314,12 +366,13 @@ func _draw():
 				draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), Color(1, 1, 1), false)
 
 	# Draw the current piece
-	var shape = current_piece["shape"][current_rotation]
-	for y in range(shape.size()):
-		for x in range(shape[y].size()):
-			if shape[y][x] != 0:
-				var cell_position = start_position + Vector2((current_position.x + x) * CELL_SIZE, (current_position.y + y) * CELL_SIZE)
-				draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), current_piece["color"])
+	if not game_over:
+		var shape = current_piece["shape"][current_rotation]
+		for y in range(shape.size()):
+			for x in range(shape[y].size()):
+				if shape[y][x] != 0:
+					var cell_position = start_position + Vector2((current_position.x + x) * CELL_SIZE, (current_position.y + y) * CELL_SIZE)
+					draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), current_piece["color"])
 
 	# Draw the ghost piece
 	draw_ghost_piece(start_position)
@@ -333,6 +386,18 @@ func _draw():
 				if held_shape[y][x] != 0:
 					var cell_position = held_position + Vector2(x * CELL_SIZE, y * CELL_SIZE)
 					draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), held_piece["color"])
+
+	# Draw the score and level
+	draw_string(my_font, Vector2(10, 30), "Score: " + str(score))
+	draw_string(my_font, Vector2(10, 60), "Level: " + str(level))
+
+	# Draw the next pieces
+	draw_next_pieces()
+
+	# Draw game over text
+	if game_over:
+		draw_string(my_font, Vector2(screen_size.x / 2 - 50, screen_size.y / 2), "Game Over")
+
 
 func draw_ghost_piece(start_position):
 	var ghost_position = current_position
