@@ -115,7 +115,7 @@ var soft_drop = false  # Track if the down key is being held
 
 func _ready():
 	# Load the font file into a FontFile object
-	my_font = load("res://mettaton-ex.otf")  # Replace with your actual font path
+	my_font = load("res://Textures/ButtonTex/04B_30__.TTF")  # Replace with your actual font path
 	initialize_grid()
 	spawn_new_piece()
 	queue_redraw()
@@ -150,6 +150,27 @@ func initialize_grid():
 		for j in range(GRID_WIDTH):
 			row.append(0)
 		grid.append(row)
+	# Debug grid DON'T REMOVE
+	grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,], 
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+			[1, 0, 0, 1, 1, 1, 1, 0, 0, 1,],
+			[1, 1, 0, 0, 1, 1, 0, 0, 1, 1,]]
 
 func spawn_new_piece():
 	if game_over:
@@ -202,7 +223,8 @@ func lock_piece():
 		clear_lines()
 	spawn_new_piece()
 func draw_next_pieces():
-	var next_position = Vector2(400, 50)  # Adjust this to position the display on the screen
+	var screen_size = get_viewport_rect().size
+	var next_position = screen_size / 2 - Vector2(-200, 250)  # Adjust this to position the display on the screen
 	for i in range(next_pieces.size()):
 		var next_piece = next_pieces[i]
 		var shape = next_piece["shape"][0]  # Always show the default rotation for preview
@@ -266,6 +288,7 @@ func rotate_piece():
 		queue_redraw()
 	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
 		var kick_position = current_position + (last_kick - kick)
+		print(str(kick) + ", " + str(current_piece["name"]) + str(new_rotation))
 		if can_move_to(kick_position, rotated_shape):
 			last_kick = kick
 			current_position = kick_position
@@ -283,6 +306,7 @@ func rotate_piece_ccw():
 		queue_redraw()
 	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
 		var kick_position = current_position + (last_kick - kick)
+		print(str(kick) + ", " + str(current_piece["name"]) + str(new_rotation))
 		if can_move_to(kick_position, rotated_shape):
 			last_kick = kick
 			current_position = kick_position
@@ -314,9 +338,9 @@ func _input(event):
 				das_timer = 0.0  # Reset DAS timer
 			elif event.keycode == KEY_DOWN:
 				soft_drop = true  # Enable continuous downward movement
-			elif event.keycode == KEY_Z or event.keycode == KEY_UP:
+			elif event.keycode == KEY_X or event.keycode == KEY_UP:
 				rotate_piece()
-			elif event.keycode == KEY_X:
+			elif event.keycode == KEY_Z:
 				rotate_piece_ccw()
 			elif event.keycode == KEY_SPACE:
 				hard_drop()
@@ -379,7 +403,7 @@ func _draw():
 
 	# Optional: Draw the held piece (if any)
 	if held_piece != null:
-		var held_position = Vector2(50, 50)
+		var held_position = screen_size / 2 - Vector2(350, 250)
 		var held_shape = held_piece["shape"][0]
 		for y in range(held_shape.size()):
 			for x in range(held_shape[y].size()):

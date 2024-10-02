@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cuciadotwkmx3"]
+[gd_scene load_steps=34 format=3 uid="uid://cuciadotwkmx3"]
 
 [ext_resource type="Texture2D" uid="uid://cw2gs0nvimggv" path="res://tetris.svg" id="1_7gtva"]
 [ext_resource type="Texture2D" uid="uid://blfrowh2d2ejh" path="res://Shapes.png" id="2_om0yo"]
@@ -107,6 +107,9 @@ load_path = "res://.godot/imported/fnnuohi0u7h71.png-c71b31df5cab116b7acb2a8f274
 atlas = SubResource("CompressedTexture2D_xn1x4")
 region = Rect2(2340, 337, 1756, 2902)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfl1w"]
+bg_color = Color(0.340339, 0.340339, 0.340339, 1)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -176,6 +179,7 @@ vertical = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("5_tlceu")
+disabled = true
 text = "Shop"
 
 [node name="Button2" type="Button" parent="Panel/BoxContainer"]
@@ -235,7 +239,7 @@ offset_right = -0.640137
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_tlceu")
-theme_override_constants/separation = 35
+theme_override_constants/separation = 23
 alignment = 2
 
 [node name="LinkButton3" type="LinkButton" parent="BoxContainer2"]
@@ -245,12 +249,20 @@ text = "Source code"
 underline = 1
 uri = "https://github.com/aMeHiMaHi/Tenuis-Tetra"
 
+[node name="Label3" type="Label" parent="BoxContainer2"]
+layout_mode = 2
+text = "-"
+
 [node name="LinkButton" type="LinkButton" parent="BoxContainer2"]
 layout_mode = 2
 theme = ExtResource("5_tlceu")
 text = "Terms"
 underline = 1
 uri = "https://tentet.top/terms"
+
+[node name="Label4" type="Label" parent="BoxContainer2"]
+layout_mode = 2
+text = "-"
 
 [node name="LinkButton2" type="LinkButton" parent="BoxContainer2"]
 layout_mode = 2
@@ -259,10 +271,14 @@ text = "Privacy"
 underline = 1
 uri = "https://tentet.top/privacy"
 
+[node name="Label2" type="Label" parent="BoxContainer2"]
+layout_mode = 2
+text = "-"
+
 [node name="Label" type="Label" parent="BoxContainer2"]
 layout_mode = 2
 theme = ExtResource("5_tlceu")
-text = "0.1 Alpha"
+text = "0.1 Pre-Alpha"
 
 [node name="BoxContainer3" type="BoxContainer" parent="."]
 layout_mode = 1
@@ -279,7 +295,7 @@ grow_vertical = 2
 theme = ExtResource("5_tlceu")
 theme_override_constants/separation = 35
 
-[node name="TextureButton" type="TextureButton" parent="BoxContainer3"]
+[node name="X" type="TextureButton" parent="BoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("8_yoh4v")
@@ -290,7 +306,7 @@ texture_focused = ExtResource("8_yoh4v")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton2" type="TextureButton" parent="BoxContainer3"]
+[node name="Youtube" type="TextureButton" parent="BoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("9_p0rsa")
@@ -301,7 +317,7 @@ texture_focused = ExtResource("9_p0rsa")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton3" type="TextureButton" parent="BoxContainer3"]
+[node name="Steam" type="TextureButton" parent="BoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("10_jeckw")
@@ -453,7 +469,7 @@ grow_vertical = 2
 size_flags_vertical = 3
 theme = ExtResource("5_tlceu")
 theme_override_font_sizes/font_size = 49
-text = "You won't press this PJ"
+text = "You won't press this"
 autowrap_mode = 2
 
 [node name="TextureButton4" type="TextureButton" parent="MenuController/Options"]
@@ -516,27 +532,13 @@ texture_focused = ExtResource("14_yh2m2")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Label2" type="Label" parent="MenuController/Leaderboards"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -70.0
-offset_top = 10.0
-offset_right = 70.0
-offset_bottom = 31.0
-grow_horizontal = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "Leaderboards"
-horizontal_alignment = 1
-
 [node name="TextureRect" type="TextureRect" parent="MenuController/Leaderboards"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = 357.0
+offset_top = -723.0
+offset_right = 399.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -546,7 +548,7 @@ stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="MenuController/Leaderboards"]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -561,1024 +563,80 @@ texture = SubResource("AtlasTexture_dkvkn")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MenuController/Leaderboards"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 676.0
-offset_top = 53.0
-offset_right = -676.0
-grow_horizontal = 2
-grow_vertical = 2
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuController/Leaderboards/ScrollContainer"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label2"]
+[node name="Panel" type="Panel" parent="MenuController/Leaderboards"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 4.729
-anchor_top = 0.5
-anchor_right = 4.729
-anchor_bottom = 0.5
-offset_left = -290.022
-offset_top = -14.0
-offset_right = -0.0220337
-offset_bottom = 14.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -321.0
+offset_right = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hfl1w")
 
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="MenuController/Leaderboards"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_top = 10.0
+offset_right = 134.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme = ExtResource("5_tlceu")
+theme_override_font_sizes/font_size = 27
+text = "Leaderboards"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuController/Leaderboards"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -302.0
+offset_top = 53.0
+offset_right = 302.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_tlceu")
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="NameContainer" type="VBoxContainer" parent="MenuController/Leaderboards/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MenuController/Leaderboards/ScrollContainer/NameContainer"]
 layout_mode = 2
 theme = ExtResource("5_tlceu")
 theme_override_font_sizes/font_size = 27
-text = "PSans"
+text = "PJSans"
 
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label3"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label4" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label4"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label5" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label5"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label6" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label6"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label7" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label7"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label8" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label8"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label9" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label9"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label10" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label10"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label11" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label11"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label12" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label12"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label13" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label13"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label14" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label14"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label15" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label15"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label16" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label16"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label17" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label17"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label18" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label18"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label19" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label19"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label20" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label20"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label21" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label21"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label22" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label22"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label23" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label23"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label24" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label24"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label25" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label25"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label26" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label26"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label27" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label27"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label28" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label28"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label29" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label29"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label30" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label30"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label31" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label31"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label32" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label32"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label33" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label33"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label34" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label34"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label35" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label35"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label36" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label36"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label37" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label37"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label38" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label38"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label39" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label39"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label40" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label40"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label41" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label41"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label42" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label42"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label43" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label43"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label44" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label44"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label45" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label45"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label46" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label46"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label47" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label47"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label48" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label48"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label49" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label49"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label50" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label50"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label51" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label51"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label52" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label52"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label53" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label53"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label54" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label54"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label55" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label55"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label56" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label56"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label57" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label57"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label58" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label58"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label59" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_tlceu")
-theme_override_font_sizes/font_size = 27
-text = "PSans"
-
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label59"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
-theme = ExtResource("5_tlceu")
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "+10000000
-"
-horizontal_alignment = 2
-
-[node name="Label60" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer"]
+[node name="Label60" type="Label" parent="MenuController/Leaderboards/ScrollContainer/NameContainer"]
 layout_mode = 2
 theme = ExtResource("5_tlceu")
 theme_override_font_sizes/font_size = 27
 text = "ThisGameIsRyan"
 
-[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/VBoxContainer/Label60"]
-offset_left = 268.0
-offset_right = 558.0
-offset_bottom = 28.0
+[node name="ScoreContainer" type="VBoxContainer" parent="MenuController/Leaderboards/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="MenuController/Leaderboards/ScrollContainer/ScoreContainer"]
+layout_mode = 2
+theme = ExtResource("5_tlceu")
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "+10000000
+"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="MenuController/Leaderboards/ScrollContainer/ScoreContainer"]
+layout_mode = 2
 theme = ExtResource("5_tlceu")
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 27
@@ -1590,6 +648,9 @@ horizontal_alignment = 2
 [connection signal="button_up" from="Panel/BoxContainer/Button2" to="SceneChanger" method="_on_button_2_button_up"]
 [connection signal="button_down" from="Panel/BoxContainer/Button3" to="MenuController" method="_on_button_3_button_down"]
 [connection signal="button_down" from="Panel/BoxContainer/Button4" to="MenuController" method="_on_button_4_button_down"]
+[connection signal="button_down" from="BoxContainer3/X" to="MenuController" method="_on_x_button_down"]
+[connection signal="button_down" from="BoxContainer3/Youtube" to="MenuController" method="_on_youtube_button_down"]
+[connection signal="button_down" from="BoxContainer3/Steam" to="MenuController" method="_on_steam_button_down"]
 [connection signal="button_down" from="MenuController/Options/Button5" to="MenuController" method="_on_button_5_button_down"]
 [connection signal="button_up" from="MenuController/Options/TextureButton4" to="MenuController" method="_on_texture_button_4_button_up"]
 [connection signal="button_up" from="MenuController/Leaderboards/Exit" to="MenuController" method="_on_exit_button_up"]
