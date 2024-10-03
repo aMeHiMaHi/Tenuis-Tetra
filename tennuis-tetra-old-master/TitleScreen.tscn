@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cuciadotwkmx3"]
+[gd_scene load_steps=30 format=3 uid="uid://cuciadotwkmx3"]
 
 [ext_resource type="Texture2D" uid="uid://cw2gs0nvimggv" path="res://tetris.svg" id="1_7gtva"]
 [ext_resource type="Texture2D" uid="uid://blfrowh2d2ejh" path="res://Shapes.png" id="2_om0yo"]
@@ -38,7 +38,7 @@ curve_y = SubResource("Curve_wj8ch")
 
 [sub_resource type="Curve" id="Curve_khqg4"]
 max_value = 3.0
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.539683, 3), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.471976, 3), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_31d0q"]
@@ -53,7 +53,7 @@ direction = Vector3(0, 1, 0)
 spread = 0.0
 angular_velocity_min = -15.0
 angular_velocity_max = 15.0
-directional_velocity_min = 122.6
+directional_velocity_min = 72.68
 directional_velocity_max = 212.2
 directional_velocity_curve = SubResource("CurveXYZTexture_c4xqk")
 gravity = Vector3(0, 0, 0)
@@ -92,20 +92,6 @@ Panel/styles/panel = SubResource("StyleBoxFlat_o6lgs")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2x26"]
 bg_color = Color(0.473976, 0.473976, 0.473976, 1)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aki7m"]
-load_path = "res://.godot/imported/fnnuohi0u7h71.png-c71b31df5cab116b7acb2a8f274b0619.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_547mt"]
-atlas = SubResource("CompressedTexture2D_aki7m")
-region = Rect2(0, 855, 1309, 2384)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xn1x4"]
-load_path = "res://.godot/imported/fnnuohi0u7h71.png-c71b31df5cab116b7acb2a8f274b0619.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkvkn"]
-atlas = SubResource("CompressedTexture2D_xn1x4")
-region = Rect2(2340, 337, 1756, 2902)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfl1w"]
 bg_color = Color(0.340339, 0.340339, 0.340339, 1)
@@ -278,7 +264,7 @@ text = "-"
 [node name="Label" type="Label" parent="BoxContainer2"]
 layout_mode = 2
 theme = ExtResource("5_tlceu")
-text = "0.1.1 Pre-Alpha"
+text = "0.1.3 Pre-Alpha"
 
 [node name="BoxContainer3" type="BoxContainer" parent="."]
 layout_mode = 1
@@ -530,37 +516,6 @@ texture_hover = ExtResource("14_yh2m2")
 texture_disabled = ExtResource("14_yh2m2")
 texture_focused = ExtResource("14_yh2m2")
 ignore_texture_size = true
-stretch_mode = 4
-
-[node name="TextureRect" type="TextureRect" parent="MenuController/Leaderboards"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -723.0
-offset_right = 399.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_547mt")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="MenuController/Leaderboards"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -608.0
-offset_top = -1003.0
-offset_right = -2.0
-offset_bottom = 5.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = SubResource("AtlasTexture_dkvkn")
-expand_mode = 1
 stretch_mode = 4
 
 [node name="Panel" type="Panel" parent="MenuController/Leaderboards"]

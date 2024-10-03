@@ -91,10 +91,10 @@ const KICK_TABLE = {
 	"O1": [Vector2(0, -1)], 
 	"O2": [Vector2(1, 0)], 
 	"O3": [Vector2(0, 1)],
-	"other0": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, -2), Vector2(-1, -2)],
 	"other1": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, 2), Vector2(-1, 2)],
 	"other2": [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, -2), Vector2(1, -2)],
-	"other3": [Vector2(0, 0), Vector2(1, 0), Vector2(1, -1), Vector2(0, 2), Vector2(1, 2)]
+	"other3": [Vector2(0, 0), Vector2(1, 0), Vector2(1, -1), Vector2(0, 2), Vector2(1, 2)],
+	"other0": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, -2), Vector2(-1, -2)]
 }
 var grid = []
 var current_piece
@@ -308,7 +308,7 @@ func rotate_piece_ccw():
 		lock_timer = 0.0
 		queue_redraw()
 	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
-		if str(current_piece["name"]) == "other":
+		if str(current_piece["name"]) == "other" and current_piece["color"] == Color(0.5, 0, 0.5):
 			kick_position  = current_position - kick
 		else:
 			kick_position  = current_position + kick
