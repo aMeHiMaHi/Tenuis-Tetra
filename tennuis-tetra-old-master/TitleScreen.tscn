@@ -278,7 +278,7 @@ text = "-"
 [node name="Label" type="Label" parent="BoxContainer2"]
 layout_mode = 2
 theme = ExtResource("5_tlceu")
-text = "0.1 Pre-Alpha"
+text = "0.1.1 Pre-Alpha"
 
 [node name="BoxContainer3" type="BoxContainer" parent="."]
 layout_mode = 1

@@ -82,18 +82,18 @@ const TETROMINOS = [
 	  "name" : "other" } 
 ]
 const KICK_TABLE = {
-	"I1": [Vector2(-1, 0), Vector2(1, 0), Vector2(-2, 0), Vector2(1, -1), Vector2(-2, 2)],
-	"I2": [Vector2(-1, -1), Vector2(0, -1), Vector2(3, -1), Vector2(0, 1), Vector2(-3, -2)],
-	"I3": [Vector2(0, -1), Vector2(-2, -1), Vector2(1, -1), Vector2(-2, 0), Vector2(1, 2)],
-	"I0": [Vector2(0, 0), Vector2(-1, 0), Vector2(2, 0), Vector2(-1, -2), Vector2(2, 1)],
-	"O0": [Vector2(0, 0)],
-	"O1": [Vector2(0, 1)], 
-	"O2": [Vector2(-1, 1)], 
-	"O3": [Vector2(-1, 0)],
-	"other0": [Vector2(0, 0), Vector2(1, 0), Vector2(1, -1), Vector2(0, 2), Vector2(1, 2)],
-	"other1": [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, -2), Vector2(1, -2)],
-	"other2": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, 2), Vector2(-1, 2)],
-	"other3": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, 1), Vector2(0, -2), Vector2(-1, -2)]
+	"I1": [Vector2(1, 0), Vector2(-1, 0), Vector2(2, 0), Vector2(-1, 1), Vector2(2, -2)],
+	"I2": [Vector2(0, 1), Vector2(-1, 1), Vector2(2, 1), Vector2(-1, -1), Vector2(2, 2)],
+	"I3": [Vector2(-1, 0), Vector2(1, 0), Vector2(-2, 0), Vector2(1, 1), Vector2(-2, 2)],
+	"I0": [Vector2(0, -1), Vector2(1, -1), Vector2(-2, -1), Vector2(1, 1), Vector2(-2, -2)],
+	"O0": [Vector2(-1, 0)],
+	"O1": [Vector2(0, -1)], 
+	"O2": [Vector2(1, 0)], 
+	"O3": [Vector2(0, 1)],
+	"other0": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, 1), Vector2(0, -2), Vector2(-1, -2)],
+	"other1": [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, 2), Vector2(-1, 2)],
+	"other2": [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, -2), Vector2(1, -2)],
+	"other3": [Vector2(0, 0), Vector2(1, 0), Vector2(1, -1), Vector2(0, 2), Vector2(1, 2)]
 }
 var grid = []
 var current_piece
@@ -280,6 +280,7 @@ func update_fall_speed():
 	fall_speed = max(0.05, 0.5 - (level - 1) * 0.05)
 
 func rotate_piece():
+	print()
 	var new_rotation = (current_rotation + 1) % current_piece["shape"].size()
 	var rotated_shape = current_piece["shape"][new_rotation]
 	if can_move_to(current_position, rotated_shape):
@@ -287,8 +288,8 @@ func rotate_piece():
 		lock_timer = 0.0
 		queue_redraw()
 	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
-		var kick_position = current_position + (last_kick - kick)
-		print(str(kick) + ", " + str(current_piece["name"]) + str(new_rotation))
+		var kick_position = current_position + (kick)
+		#print("(" + str(kick.x) + "," + str(kick.y) + "), " + str(current_piece["name"]) + str(new_rotation) + " Last " + str(last_kick))
 		if can_move_to(kick_position, rotated_shape):
 			last_kick = kick
 			current_position = kick_position
@@ -298,6 +299,7 @@ func rotate_piece():
 			break
 
 func rotate_piece_ccw():
+	print()
 	var new_rotation = (current_rotation - 1 + current_piece["shape"].size()) % current_piece["shape"].size()
 	var rotated_shape = current_piece["shape"][new_rotation]
 	if can_move_to(current_position, rotated_shape):
@@ -305,8 +307,8 @@ func rotate_piece_ccw():
 		lock_timer = 0.0
 		queue_redraw()
 	for kick in KICK_TABLE[current_piece["name"] + str(new_rotation)]:
-		var kick_position = current_position + (last_kick - kick)
-		print(str(kick) + ", " + str(current_piece["name"]) + str(new_rotation))
+		var kick_position = current_position + (kick)
+		#print("(" + str(-kick.x) + "," + str(kick.y) + "), " + str(current_piece["name"]) + str(new_rotation))
 		if can_move_to(kick_position, rotated_shape):
 			last_kick = kick
 			current_position = kick_position
