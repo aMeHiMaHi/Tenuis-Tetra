@@ -1,28 +1,39 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1727847271
-export_presets.cfg::TextFile::-1::1727812080::0::1::::<><>::
-fnnuohi0u7h71.png::CompressedTexture2D::5848009239829039682::1727801252::1727801257::1::::<><>::
-grid2.gd::GDScript::-1::1727846708::0::1::::<>Node2D<>::
+::res://::1728351981
+export_presets.cfg::TextFile::-1::1728276864::0::1::::<><>::
+google.gd::GDScript::-1::1728327917::0::1::::<>Button<>::
+grid2.gd::GDScript::-1::1728266098::0::1::::<>Node2D<>::
 grid.gd::GDScript::-1::1727641117::0::1::::<>Node2D<>::
 icon.svg::CompressedTexture2D::6434338913232168402::1727638891::1727638937::1::::<><>::
-Main.tscn::PackedScene::7479938751354781906::1727847080::0::1::::<><>::res://grid2.gd
-menu_controller.gd::GDScript::-1::1727811329::0::1::::<>Node<>::
+Main.tscn::PackedScene::7479938751354781906::1728346303::0::1::::<><>::res://grid2.gd
+menu_controller.gd::GDScript::-1::1728326631::0::1::::<>Node<>::
 scene_changer.gd::GDScript::-1::1727754987::0::1::::<>Node<>::
 Shapes.png::CompressedTexture2D::3169878210032620273::1727733121::1727733436::1::::<><>::
 tetris title.mp3::AudioStreamMP3::7757124625188644995::1727746906::1727746913::1::::<><>::
 tetris.svg::CompressedTexture2D::6373131907160939833::1727729994::1727730565::1::::<><>::
-Theme.tres::Theme::8183785055495853579::1727831495::0::1::::<><>::uid://7rtlxrboqcan::::res://Textures/ButtonTex/04B_30__.TTF<>uid://cgcud0fhurgbi::::res://Textures/ButtonTex/Button_style_box_texture.tres<>uid://b6jrfqfrohiqq::::res://Textures/ButtonTex/ButtonPressedC.png
-ThemeSettings.tres::Theme::8359957412633274222::1727831495::0::1::::<><>::uid://7rtlxrboqcan::::res://Textures/ButtonTex/04B_30__.TTF<>uid://cgcud0fhurgbi::::res://Textures/ButtonTex/Button_style_box_texture.tres<>uid://b6jrfqfrohiqq::::res://Textures/ButtonTex/ButtonPressedC.png
-TitleScreen.tscn::PackedScene::6181232911687493482::1727847080::0::1::::<><>::uid://cw2gs0nvimggv::::res://tetris.svg<>uid://blfrowh2d2ejh::::res://Shapes.png<>uid://douj0kj7wh2nn::::res://Theme.tres<>uid://dfr6gx3mqnhey::::res://Textures/ButtonTex/ButtonG.png<>uid://diruyd5h8rsyt::::res://tetris title.mp3<>uid://bcqm8mig58ib5::::res://Textures/ButtonTex/ButtonO.png<>uid://cqvqpqcvgkpd7::::res://Textures/Icons/SocialMedia/icons8-twitter-96.png<>uid://ysbxkrcigcqc::::res://Textures/Icons/SocialMedia/icons8-youtube-96.png<>uid://w6vyai6re7ug::::res://Textures/ButtonTex/ButtonY.png<>uid://3jp7jvc2ke6x::::res://Textures/Icons/SocialMedia/Pictogrammers-Material-Steam.512.png<>res://scene_changer.gd<>res://menu_controller.gd<>uid://drdvjook7slk5::::res://ThemeSettings.tres<>uid://buqjmag1b41v0::::res://Textures/cancel.svg
-::res://addons/::1727638891
+Theme.tres::Theme::8183785055495853579::1728246820::0::1::::<><>::uid://7rtlxrboqcan::::res://Textures/ButtonTex/04B_30__.TTF<>uid://cgcud0fhurgbi::::res://Textures/ButtonTex/Button_style_box_texture.tres<>uid://b6jrfqfrohiqq::::res://Textures/ButtonTex/ButtonPressedC.png
+ThemeSettings.tres::Theme::8359957412633274222::1728246820::0::1::::<><>::uid://7rtlxrboqcan::::res://Textures/ButtonTex/04B_30__.TTF<>uid://cgcud0fhurgbi::::res://Textures/ButtonTex/Button_style_box_texture.tres<>uid://b6jrfqfrohiqq::::res://Textures/ButtonTex/ButtonPressedC.png
+TitleScreen.tscn::PackedScene::6181232911687493482::1728346303::0::1::::<><>::uid://cw2gs0nvimggv::::res://tetris.svg<>uid://blfrowh2d2ejh::::res://Shapes.png<>res://google.gd<>uid://douj0kj7wh2nn::::res://Theme.tres<>uid://dfr6gx3mqnhey::::res://Textures/ButtonTex/ButtonG.png<>uid://diruyd5h8rsyt::::res://tetris title.mp3<>uid://bcqm8mig58ib5::::res://Textures/ButtonTex/ButtonO.png<>uid://cqvqpqcvgkpd7::::res://Textures/Icons/SocialMedia/icons8-twitter-96.png<>uid://ysbxkrcigcqc::::res://Textures/Icons/SocialMedia/icons8-youtube-96.png<>uid://w6vyai6re7ug::::res://Textures/ButtonTex/ButtonY.png<>uid://3jp7jvc2ke6x::::res://Textures/Icons/SocialMedia/Pictogrammers-Material-Steam.512.png<>res://scene_changer.gd<>res://menu_controller.gd<>uid://drdvjook7slk5::::res://ThemeSettings.tres<>uid://buqjmag1b41v0::::res://Textures/cancel.svg
+::res://addons/::1728325967
 ::res://addons/godot-git-plugin/::1727638891
 git_plugin.gdextension::GDExtension::-1::1727638891::0::1::::<><>::
 plugin.cfg::TextFile::-1::1727638891::0::1::::<><>::
 THIRDPARTY.md::TextFile::-1::1727638891::0::1::::<><>::
 ::res://addons/godot-git-plugin/linux/::1727638891
 ::res://addons/godot-git-plugin/macos/::1727638891
-::res://addons/godot-git-plugin/win64/::1727847267
-::res://Textures/::1727797836
+::res://addons/godot-git-plugin/win64/::1728351977
+::res://addons/godot_auth/::1728325967
+oauth_icon.png::CompressedTexture2D::7145040693150175575::1728325965::1728325967::1::::<><>::
+oauth_plugin.gd::GDScript::-1::1728325965::0::1::::<>EditorPlugin<>::
+plugin.cfg::TextFile::-1::1728325965::0::1::::<><>::
+README.md::TextFile::-1::1728325965::0::1::::<><>::
+::res://addons/godot_auth/example/::1728325965
+button.gd::GDScript::-1::1728327217::0::1::::<>Button<>::
+::res://addons/godot_auth/tools/::1728346301
+authorized.html.txt::TextFile::-1::1728325965::0::1::::<><>::
+html.gd::GDScript::-1::1728325965::0::1::::HTML<>Node<>::
+oauth.gd::GDScript::-1::1728346301::0::1::::Oauth2<>Node<>::
+::res://Textures/::1728241843
 cancel.svg::CompressedTexture2D::3823795493433116547::1727797833::1727797836::1::::<><>::
 ::res://Textures/ButtonTex/::1727749793
 04B_30__.TTF::FontFile::2282311919195072853::1727747678::1727749793::1::::<><>::
@@ -42,3 +53,5 @@ Button_style_box_texture.tres::StyleBoxTexture::5199324203112785450::1727749793:
 icons8-twitter-96.png::CompressedTexture2D::5940213901648595986::1727749844::1727749844::1::::<><>::
 icons8-youtube-96.png::CompressedTexture2D::1721793388735408986::1727749844::1727749844::1::::<><>::
 Pictogrammers-Material-Steam.512.png::CompressedTexture2D::1984835427226293061::1727749844::1727749844::1::::<><>::
+::res://Textures/Skins/::1728266001
+Skin1.svg::CompressedTexture2D::5142332226516223028::1728249136::1728266001::1::::<><>::

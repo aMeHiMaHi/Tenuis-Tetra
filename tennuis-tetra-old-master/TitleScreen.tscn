@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://cuciadotwkmx3"]
+[gd_scene load_steps=31 format=3 uid="uid://cuciadotwkmx3"]
 
 [ext_resource type="Texture2D" uid="uid://cw2gs0nvimggv" path="res://tetris.svg" id="1_7gtva"]
 [ext_resource type="Texture2D" uid="uid://blfrowh2d2ejh" path="res://Shapes.png" id="2_om0yo"]
+[ext_resource type="Script" path="res://google.gd" id="4_km4dh"]
 [ext_resource type="Theme" uid="uid://douj0kj7wh2nn" path="res://Theme.tres" id="5_tlceu"]
 [ext_resource type="Texture2D" uid="uid://dfr6gx3mqnhey" path="res://Textures/ButtonTex/ButtonG.png" id="7_5i0dq"]
 [ext_resource type="AudioStream" uid="uid://diruyd5h8rsyt" path="res://tetris title.mp3" id="7_a2cc8"]
@@ -115,22 +116,82 @@ preprocess = 20.0
 visibility_rect = Rect2(-14000, 0, 28000, 2000)
 local_coords = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.449
-anchor_right = 0.5
-anchor_bottom = 0.641
-offset_left = -126.0
-offset_top = -89.9201
-offset_right = 126.0
-offset_bottom = 90.72
+anchor_top = 0.197
+anchor_right = 1.0
+anchor_bottom = 0.308
+offset_top = 0.23999
+offset_bottom = 0.359955
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_tlceu")
+texture = ExtResource("1_7gtva")
+expand_mode = 2
+stretch_mode = 5
 
-[node name="LineEdit" type="LineEdit" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 682.0
+offset_top = 324.0
+offset_right = -682.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Panel2" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_tlceu")
+
+[node name="BoxContainer" type="BoxContainer" parent="HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036
+anchor_top = 0.616
+anchor_right = 0.96
+anchor_bottom = 0.775
+offset_left = 0.0639992
+offset_top = -0.11203
+offset_right = 0.039978
+offset_bottom = 0.199982
+theme = ExtResource("5_tlceu")
+theme_override_constants/separation = 16
+alignment = 2
+vertical = true
+
+[node name="Google" type="Button" parent="HBoxContainer/Panel2/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_tlceu")
+text = "Google login"
+script = ExtResource("4_km4dh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Panel2/BoxContainer/Google"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -3.739
+anchor_right = 1.0
+anchor_bottom = -0.174
+offset_top = -0.00900269
+offset_bottom = 0.00600052
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_tlceu")
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.036
@@ -146,7 +207,7 @@ placeholder_text = "Unnamed"
 alignment = 1
 max_length = 14
 
-[node name="BoxContainer" type="BoxContainer" parent="Panel"]
+[node name="BoxContainer" type="BoxContainer" parent="HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.229
@@ -161,51 +222,33 @@ theme_override_constants/separation = 16
 alignment = 2
 vertical = true
 
-[node name="Button" type="Button" parent="Panel/BoxContainer"]
+[node name="Button" type="Button" parent="HBoxContainer/Panel/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("5_tlceu")
 disabled = true
 text = "Shop"
 
-[node name="Button2" type="Button" parent="Panel/BoxContainer"]
+[node name="Button2" type="Button" parent="HBoxContainer/Panel/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("5_tlceu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_mjbvg")
 text = "Play"
 
-[node name="Button3" type="Button" parent="Panel/BoxContainer"]
+[node name="Button3" type="Button" parent="HBoxContainer/Panel/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("5_tlceu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_bdb0p")
 text = "leaderboards"
 
-[node name="Button4" type="Button" parent="Panel/BoxContainer"]
+[node name="Button4" type="Button" parent="HBoxContainer/Panel/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("5_tlceu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ewb8u")
 text = "Options"
-
-[node name="TextureRect" type="TextureRect" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = -0.314
-anchor_right = 0.5
-anchor_bottom = -0.052
-offset_left = -359.0
-offset_top = -0.167969
-offset_right = 359.0
-offset_bottom = 0.176004
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("5_tlceu")
-texture = ExtResource("1_7gtva")
-expand_mode = 2
-stretch_mode = 5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_a2cc8")
@@ -264,7 +307,7 @@ text = "-"
 [node name="Label" type="Label" parent="BoxContainer2"]
 layout_mode = 2
 theme = ExtResource("5_tlceu")
-text = "0.1.3 Pre-Alpha"
+text = "0.1.4 Pre-Alpha"
 
 [node name="BoxContainer3" type="BoxContainer" parent="."]
 layout_mode = 1
@@ -599,10 +642,13 @@ text = "-99999999
 "
 horizontal_alignment = 2
 
-[connection signal="button_down" from="Panel/BoxContainer/Button" to="MenuController" method="_on_button_button_down"]
-[connection signal="button_up" from="Panel/BoxContainer/Button2" to="SceneChanger" method="_on_button_2_button_up"]
-[connection signal="button_down" from="Panel/BoxContainer/Button3" to="MenuController" method="_on_button_3_button_down"]
-[connection signal="button_down" from="Panel/BoxContainer/Button4" to="MenuController" method="_on_button_4_button_down"]
+[connection signal="button_down" from="HBoxContainer/Panel2/BoxContainer/Google" to="HBoxContainer/Panel2/BoxContainer/Google" method="_on_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/Panel2/BoxContainer/Google" to="HBoxContainer/Panel2/BoxContainer/Google" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Panel2/BoxContainer/Google" to="HBoxContainer/Panel2/BoxContainer/Google" method="_on_mouse_exited"]
+[connection signal="button_down" from="HBoxContainer/Panel/BoxContainer/Button" to="MenuController" method="_on_button_button_down"]
+[connection signal="button_up" from="HBoxContainer/Panel/BoxContainer/Button2" to="SceneChanger" method="_on_button_2_button_up"]
+[connection signal="button_down" from="HBoxContainer/Panel/BoxContainer/Button3" to="MenuController" method="_on_button_3_button_down"]
+[connection signal="button_down" from="HBoxContainer/Panel/BoxContainer/Button4" to="MenuController" method="_on_button_4_button_down"]
 [connection signal="button_down" from="BoxContainer3/X" to="MenuController" method="_on_x_button_down"]
 [connection signal="button_down" from="BoxContainer3/Youtube" to="MenuController" method="_on_youtube_button_down"]
 [connection signal="button_down" from="BoxContainer3/Steam" to="MenuController" method="_on_steam_button_down"]

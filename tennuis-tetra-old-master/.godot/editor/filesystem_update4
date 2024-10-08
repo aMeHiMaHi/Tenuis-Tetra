@@ -2,6 +2,4 @@ res://Main.tscn
 res://Theme.tres
 res://ThemeSettings.tres
 res://TitleScreen.tscn
-res://grid2.gd
-res://menu_controller.gd
-res://grid.gd
+res://addons/godot_auth/tools/oauth.gd

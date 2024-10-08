@@ -17,6 +17,9 @@ var lines_cleared = 0
 var game_over = false
 var kick_position
 
+var skin_texture: Texture2D = load("res://Textures/Skins/Skin1.svg")
+var skin_texture_sml
+
 # Define Tetromino shapes and their colors
 const TETROMINOS = [
 	{ "shape": [
@@ -117,6 +120,9 @@ var soft_drop = false  # Track if the down key is being held
 func _ready():
 	# Load the font file into a FontFile object
 	my_font = load("res://Textures/ButtonTex/04B_30__.TTF")  # Replace with your actual font path
+	skin_texture_sml = skin_texture.get_image()
+	skin_texture_sml.resize(16, 16)
+	skin_texture_sml = ImageTexture.create_from_image(skin_texture_sml)
 	initialize_grid()
 	spawn_new_piece()
 	queue_redraw()
@@ -235,7 +241,7 @@ func draw_next_pieces():
 			for x in range(shape[y].size()):
 				if shape[y][x] != 0:
 					var cell_position = piece_position + Vector2(x * CELL_SIZE / 2, y * CELL_SIZE / 2)  # Smaller size
-					draw_rect(Rect2(cell_position, Vector2(CELL_SIZE / 2, CELL_SIZE / 2)), next_piece["color"])
+					draw_texture_rect(skin_texture_sml, Rect2(cell_position, Vector2(CELL_SIZE / 2, CELL_SIZE / 2)), true, next_piece["color"])
 
 func clear_lines():
 	var lines_cleared_in_this_move = 0
@@ -391,7 +397,7 @@ func _draw():
 		for x in range(GRID_WIDTH):
 			var cell_position = start_position + Vector2(x * CELL_SIZE, y * CELL_SIZE)
 			if grid[y][x] != 0:
-				draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), Color(0.5, 0.5, 0.5))
+				draw_texture_rect(skin_texture, Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), true, Color(0.5, 0.5, 0.5))
 			else:
 				draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), Color(1, 1, 1), false)
 
@@ -402,7 +408,7 @@ func _draw():
 			for x in range(shape[y].size()):
 				if shape[y][x] != 0:
 					var cell_position = start_position + Vector2((current_position.x + x) * CELL_SIZE, (current_position.y + y) * CELL_SIZE)
-					draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), current_piece["color"])
+					draw_texture_rect(skin_texture, Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), true, current_piece["color"])
 
 	# Draw the ghost piece
 	draw_ghost_piece(start_position)
@@ -415,7 +421,7 @@ func _draw():
 			for x in range(held_shape[y].size()):
 				if held_shape[y][x] != 0:
 					var cell_position = held_position + Vector2(x * CELL_SIZE, y * CELL_SIZE)
-					draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), held_piece["color"])
+					draw_texture_rect(skin_texture, Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), true, held_piece["color"])
 
 	# Draw the score and level
 	draw_string(my_font, Vector2(10, 30), "Score: " + str(score))
@@ -439,4 +445,4 @@ func draw_ghost_piece(start_position):
 		for x in range(shape[y].size()):
 			if shape[y][x] != 0:
 				var cell_position = start_position + Vector2((ghost_position.x + x) * CELL_SIZE, (ghost_position.y + y) * CELL_SIZE)
-				draw_rect(Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), current_piece["color"].lightened(0.5), false)
+				draw_texture_rect(skin_texture, Rect2(cell_position, Vector2(CELL_SIZE, CELL_SIZE)), true, Color(current_piece["color"].lightened(0.5), 0.5), false)

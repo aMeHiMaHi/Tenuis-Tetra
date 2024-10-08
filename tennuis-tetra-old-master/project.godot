@@ -10,9 +10,14 @@ config_version=5
 
 [application]
 
-config/name="basic godot tetris setup"
+config/name="Tenuis Tetra"
+config/version="0.1.3 Pre-Alpha"
 run/main_scene="res://TitleScreen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+run/low_processor_mode=true
+boot_splash/image="res://tetris.svg"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [display]
@@ -20,6 +25,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [dotnet]
 

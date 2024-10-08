@@ -2,16 +2,5 @@
 
 [ext_resource type="Script" path="res://grid2.gd" id="1_xxeue"]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 431.0
-offset_right = 471.0
-offset_bottom = 23.0
-
-[node name="Grid" type="Node2D" parent="."]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_xxeue")
